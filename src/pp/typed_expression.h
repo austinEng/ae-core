@@ -1,4 +1,6 @@
 
+#pragma once
+
 // http://stackoverflow.com/questions/11031062/c-preprocessor-avoid-code-repetition-of-member-variable-list/11744832#11744832
 
 #define REM(...) __VA_ARGS__

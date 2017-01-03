@@ -1,4 +1,6 @@
 
+#pragma once
+
 namespace SIMD {
   template <typename T, unsigned int N>
   class Type {
