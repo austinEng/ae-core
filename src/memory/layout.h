@@ -2,9 +2,9 @@
 #pragma once
 
 #include <vector>
-#include <pp/foreach.h>
-#include <pp/typed_expression.h>
-#include <pp/count.h>
+#include "../pp/foreach.h"
+#include "../pp/typed_expression.h"
+#include "../pp/count.h"
 
 #define AOS_NODE_PROP(x) PAIR(x);
 #define VOS_PROP(x) std::vector<TYPEOF(x)> STRIP(x);

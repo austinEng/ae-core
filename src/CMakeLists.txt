@@ -25,5 +25,7 @@ target_include_directories(ae_core PUBLIC
 install(TARGETS ae_core EXPORT ae_core DESTINATION "${LIB_DEST}")
 install(FILES ae_core-config.cmake DESTINATION ${LIB_DEST})
 install(EXPORT ae_core DESTINATION "${LIB_DEST}")
-install(FILES ${ae_core_headers} DESTINATION "${INCLUDE_DEST}")
+install(DIRECTORY memory DESTINATION ${INCLUDE_DEST} FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY pp DESTINATION ${INCLUDE_DEST} FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY simd DESTINATION ${INCLUDE_DEST} FILES_MATCHING PATTERN "*.h")
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/config_impl.h DESTINATION "${LIB_DEST}")
