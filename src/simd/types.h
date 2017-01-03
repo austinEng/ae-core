@@ -1,20 +1,27 @@
 
 #pragma once
 
+#include <initializer_list>
+#include <algorithm>
+
 namespace SIMD {
   template <typename T, unsigned int N>
   class Type {
     T vals[N];
 
     public:
-    template <typename... Ts>
-    Type(Ts... args) : vals {args...} { }
+
+    void set(const std::initializer_list<T> &init) {
+      std::copy(init.begin(), init.end(), vals);
+    }
 
     template <typename T2>
-    Type(const T2 &a) {
-      for (unsigned int i = 0; i < N; ++i) {
-        vals[i] = a[i];
-      }
+    operator Type<T2, N>() const {
+       Type<T2, N> a;
+       for (unsigned int i = 0; i < N; ++i) {
+         a[i] = vals[i];
+       }
+       return a;
     }
 
     T operator[](unsigned int i) const {
@@ -109,6 +116,78 @@ namespace SIMD {
       Type<T, N> out;
       for (unsigned int i = 0; i < N; ++i) {
         out[i] = a[i] ^ b[i];
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator+(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] + b;
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator-(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] - b;
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator*(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] * b;
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator/(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] / b;
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator%(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] % b;
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator&(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] & b;
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator|(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] | b;
+      }
+      return out;
+    }
+
+    template <typename T2>
+    friend Type<T, N> operator^(const Type<T, N> &a, const T2 &b) {
+      Type<T, N> out;
+      for (unsigned int i = 0; i < N; ++i) {
+        out[i] = a[i] ^ b;
       }
       return out;
     }

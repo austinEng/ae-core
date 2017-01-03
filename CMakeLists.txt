@@ -28,3 +28,4 @@ set(LIB_DEST "lib/${PROJECT_NAME}")
 add_subdirectory(src)
 
 enable_testing()
+add_subdirectory(test)
