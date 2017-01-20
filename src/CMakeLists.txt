@@ -6,6 +6,7 @@ file(GLOB ae_core_headers
 )
 
 file(GLOB ae_core_source
+  main.cc
   memory/*.cc
   pp/*.cc
   simd/*.cc
